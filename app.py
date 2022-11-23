@@ -22,6 +22,10 @@ def after_request(response):
     return response
 
 
+@app.route("/")
+def homepage():
+    return "Hello Tram"
+
 # --------------------------------------------------
 # SHIRT API
 # --------------------------------------------------
