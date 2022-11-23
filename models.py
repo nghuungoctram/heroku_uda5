@@ -2,12 +2,13 @@ import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 
-DATABASE_PATH = os.getenv('DATABASE_PATH')
+DATABASE_PATH = os.getenv('DATABASE_URL')
 db = SQLAlchemy()
 
 
 def setup_db(app, database_path=DATABASE_PATH):
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:postgres@localhost:5432/shirt-shop"
+    app.config["DEBUG"] = True
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_PATH
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
